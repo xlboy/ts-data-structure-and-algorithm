@@ -1,0 +1,10 @@
+{
+  "vitest.enable": true,
+  "vitest.include": ["src/*/*.ts"],
+  "vitest.exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.history/**",
+  ],
+  "vitest.commandLine": "pnpm exec vitest --api.host 127.0.0.1"
+}
