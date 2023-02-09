@@ -1,6 +1,10 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
-// 递减式的缩小范围圈，将每轮范围圈内的最小的值往前挪（两两对比后“挪位”），以此来达到排序目的
+/**
+ * 
+ * @关键词 `范围圈`、`两两对比`
+ * @大致思路 递减式的缩小`范围圈`，将每轮`范围圈`内的最小的值往前挪（**两两对比后挪位**），以此来达到排序目的
+ */
 function core(arr: Array<number>): Array<number> {
   let loopLength = arr.length - 1;
   

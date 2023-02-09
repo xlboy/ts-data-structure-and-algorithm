@@ -1,6 +1,10 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
-// 打扑克牌似的，人眼从左往右扫，将“当前扫到的内容”与“前面的内容”进行对比，看看“哪个内容”是比“当前扫到的内容”小的。紧接着就插入到“哪个内容”的后面
+/**
+ * 
+ * @关键词 `扑克牌`、`最近的小牌后`
+ * @大致思路 打扑克牌似的，人眼从左往右扫，将“当前扫到的内容”与“前面的内容”进行对比，看看“哪个内容”是比“当前扫到的内容”小的。紧接着就插入到“哪个内容”的后面
+ */
 function core(arr: Array<number>): Array<number> {
   let loopLength = arr.length;
 

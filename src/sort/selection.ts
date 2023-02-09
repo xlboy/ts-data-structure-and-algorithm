@@ -1,6 +1,10 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
-// 递减式的缩小范围圈，将每轮“范围圈”内的“最小值”记录下来，然后挪到当前“范围圈”的头部
+/**
+ * 
+ * @关键词 `范围圈`、`最小值`
+ * @大致思路 递减式的缩小范围圈，将每轮“范围圈”内的“最小值”记录下来，然后挪到当前“范围圈”的头部
+ */
 function core(arr: Array<number>): Array<number> {
   let loopLength = arr.length - 1;
 
