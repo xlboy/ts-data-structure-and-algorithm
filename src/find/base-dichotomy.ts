@@ -101,3 +101,70 @@ function searchInsertPosition2(nums: number[], target: number): number {
 }
 
 //#endregion  //*======== 35. 搜索插入位置（https://leetcode.cn/problems/search-insert-position/） ===========
+
+//#region  //*=========== 34. 在排序数组中查找元素的第一个和最后一个位置（https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/） ===========
+
+function searchRange(nums: number[], target: number): number[] {
+  const range = { l: -1, r: -1 };
+  let l = 0;
+  let r = nums.length - 1;
+
+  let inLeftSearch = false;
+  let inRightSearch = false;
+  let tempR!: number;
+
+  while (l <= r) {
+    const curMidIndex = Math.floor((l + r) / 2);
+    const curMidItem = nums[curMidIndex];
+
+    // 还在寻找首个中间 target 值
+    if (!inLeftSearch && !inRightSearch) {
+      if (curMidItem === target) {
+        inLeftSearch = true;
+        range.r = curMidIndex;
+        tempR = r;
+        r = curMidIndex - 1;
+      } else if (curMidItem > target) {
+        r = curMidIndex - 1;
+      } else l = curMidIndex + 1;
+    } else {
+      if (inLeftSearch) {
+        if (curMidItem === target) {
+          range.l = curMidIndex;
+          r = curMidIndex - 1;
+        } else {
+          l = curMidIndex + 1;
+        }
+
+        if (l === r) {
+          if (nums[l] === target) {
+            range.l = l;
+          }
+
+          inLeftSearch = false;
+          inRightSearch = true;
+          l = range.r + 1;
+          r = tempR;
+        }
+      } else if (inRightSearch) {
+        if (curMidItem === target) {
+          range.r = curMidIndex;
+          l = curMidIndex + 1;
+        } else {
+          r = curMidIndex - 1;
+        }
+
+        if (l === r) {
+          if (nums[r] === target) {
+            range.r = r;
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  return [range.l, range.r];
+}
+
+//#endregion  //*======== 34. 在排序数组中查找元素的第一个和最后一个位置 （https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/） ===========
